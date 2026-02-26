@@ -88,10 +88,30 @@ Spring mapea automaticamente las propiedades de la clase a los atributos del rec
 
 
 ## 3. Extender los scopes 
+Se ha vuelto a agregar los archivos pasados del laboratorio 4 para poder tener la configuracion y endpoints de los blueprints.
+
+Por ende se ha vuelto a tener una base en postgre y se realizaron cambios en el archivo application.yml para poder tener la configuracion de la base de datos.
+
 
 **blueprints.read**
+Los endpoints que se pueden acceder con el scope `blueprints.read` son:
+- `/blueprints`
+- `/blueprints/{author}`
+- `/blueprints/{author}/{bpname}`
 
+Evidencias
 
+Autenticacion en swagger tras loggin con el token emitido.
+![Imagen1](/docs/1.png)
+
+Validado
+![Imagen2](/docs/2.png)
+
+Prueba de endpoint con get (Endpoint del lab5)
+![Imagen3](/docs/3.png)
+
+Prueba de endpoint con get (Endpoint del lab4) (vacio por que no hay datos en la BD de Postgre)
+![Imagen4](/docs/4.png)
 
 ## Authors
 
