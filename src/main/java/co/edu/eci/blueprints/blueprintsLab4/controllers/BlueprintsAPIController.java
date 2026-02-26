@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.access.prepost.PreAuthorize;
+
 
 import java.util.Map;
 import java.util.Set;
@@ -28,12 +30,14 @@ public class BlueprintsAPIController {
 
     // GET /blueprints
     @GetMapping
+    @PreAuthorize("hasAuthority('SCOPE_blueprints.read')")
     public ResponseEntity<Set<Blueprint>> getAll() {
         return ResponseEntity.ok(services.getAllBlueprints());
     }
 
     // GET /blueprints/{author}
     @GetMapping("/{author}")
+    @PreAuthorize("hasAuthority('SCOPE_blueprints.read')")
     public ResponseEntity<?> byAuthor(@PathVariable String author) {
         try {
             return ResponseEntity.ok(services.getBlueprintsByAuthor(author));
@@ -44,6 +48,7 @@ public class BlueprintsAPIController {
 
     // GET /blueprints/{author}/{bpname}
     @GetMapping("/{author}/{bpname}")
+    @PreAuthorize("hasAuthority('SCOPE_blueprints.read')")
     public ResponseEntity<?> byAuthorAndName(@PathVariable String author, @PathVariable String bpname) {
         try {
             return ResponseEntity.ok(services.getBlueprint(author, bpname));
