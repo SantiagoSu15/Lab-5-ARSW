@@ -72,6 +72,21 @@ Cualquier otra ruta requiere estar logueado.
 
 ## 2. Explorar el flujo de login y analizar las claims del JWT emitido.
 
+- Usuario hace post a `/auth/login` con credenciales correctas.
+- A la clase `RsaKeyProperties` se pide el atributo tokenTtlSeconds, en caso de ser nulo se usa de lo contrario se pone por defecto 3600 segundos.
+Esta clase es un record que lee las propiedades de blueprints.security en el archivo application.yml.
+Spring mapea automaticamente las propiedades de la clase a los atributos del record.
+- Se construye un objeto `JwtClaimsSet` que representa el contenido del token donde:
+  - `iss`: es el emisor del token
+  - `issuedAt`: fehca del token
+  - `expiresAt`: fecha que expira el token
+  - `subject`: Usuario que genera el token
+  - `scope`: scopes que tiene el token (permisos)
+- Se construye un objeto `JwtHeader` que representa el encabezado del token con un algoritmo de firma: `RS256`
+- Se firma y genera  el token con la cabecera y el claims y devolviendolo en formato String
+- Finalmente se devuelve una respuesta HTTP 200 con el token en el body.
+
+
 ## Authors
 
 * **Juan Rangel** & **Santiago Suarez**
