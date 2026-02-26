@@ -87,6 +87,12 @@ Spring mapea automaticamente las propiedades de la clase a los atributos del rec
 - Finalmente se devuelve una respuesta HTTP 200 con el token en el body.
 
 
+## 3. Extender los scopes 
+
+**blueprints.read**
+
+
+
 ## Authors
 
 * **Juan Rangel** & **Santiago Suarez**
