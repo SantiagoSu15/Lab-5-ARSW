@@ -49,9 +49,28 @@ src/main/resources/
 ---
 
 
-### Actividades
+## Actividades
+
+## 1. Revisar el código de configuración de seguridad
+
+- `SecurityFilterChain`:Configuracion principal donde se definen reglas de autorizacion, y con la llamada a `authorizeHttpRequests` se define el acceso a los endpoints.
+
+**Endpoints Publicos:**
+
+Las rutas para acceder a swagger `v3/api-docs/`, `/swagger-ui/`, `/swagger-ui.html` son todos publicos sin necesidar de estar logueado
+De igual manera las rutas `/actuator/health` y `/auth/login`  son publicas.
+
+**Endpoints Protegidos:**
+Acceder a cualquier que comience con `/api` requiere tener algun scope (`SCOPE_blueprints.read` o `SCOPE_blueprints.write`) para acceder.
+
+Cualquier otra ruta requiere estar logueado.
 
 
+- `passwordEncoder`: Manera que se encriptan las contraseñas
+- `jwtDecoder`: Valida tokens
+- `jwtEncoder`: Genera tokens
+
+## 2. Explorar el flujo de login y analizar las claims del JWT emitido.
 
 ## Authors
 
