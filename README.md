@@ -134,7 +134,6 @@ tras modificar el tiempo de expiracion de token el comportamiento varia segun lo
 que reingresar de forma mas constante, pero tambien significa que se esta creando un nuevo token constantemente y es mejor para la seguridad.
 por el contrario si se amplia el tiempo de caducidad de token pasa lo contrario, las sesiones duran mas tiempo activas pero esto permitiria que al no estar restableciendoce de forma mas continua el token este queda expuesto a ser interceptado y cifrado.
 
-## 5 documentacion de endpoints deautenticacion y negocio
 
 
 ## Authors
