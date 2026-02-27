@@ -95,6 +95,9 @@ Por ende se ha vuelto a tener una base en postgre y se realizaron cambios en el 
 
 
 **blueprints.read**
+
+Cada endpoint se le agrego la marquilla `@PreAuthorize("hasAuthority('SCOPE_blueprints.read')")`
+
 Los endpoints que se pueden acceder con el scope `blueprints.read` son:
 - `/blueprints`
 - `/blueprints/{author}`
