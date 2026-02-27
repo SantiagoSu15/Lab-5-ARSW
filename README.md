@@ -117,6 +117,14 @@ Prueba de endpoint con get (Endpoint del lab5)
 Prueba de endpoint con get (Endpoint del lab4) (vacio por que no hay datos en la BD de Postgre)
 ![Imagen4](/docs/4.png)
 
+<img width="1333" height="883" alt="image" src="https://github.com/user-attachments/assets/2326d98a-8aab-4b93-b032-9a5eda9ba9a9" />
+
+<img width="1318" height="685" alt="image" src="https://github.com/user-attachments/assets/f7bcea25-8a3d-4b39-8ed0-25b77d8e5621" />
+
+<img width="1309" height="742" alt="image" src="https://github.com/user-attachments/assets/1ee7ff6e-0ba5-4548-8192-68a49447a429" />
+
+<img width="1369" height="579" alt="image" src="https://github.com/user-attachments/assets/919a0d2d-f5fa-447f-bc79-f9b314faa67c" />
+
 ## Authors
 
 * **Juan Rangel** & **Santiago Suarez**
