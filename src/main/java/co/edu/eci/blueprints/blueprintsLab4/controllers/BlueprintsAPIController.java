@@ -59,6 +59,7 @@ public class BlueprintsAPIController {
 
     // POST /blueprints
     @PostMapping
+    @PreAuthorize("hasAuthority('SCOPE_blueprints.write')")
     public ResponseEntity<?> add(@Valid @RequestBody NewBlueprintRequest req) {
         try {
             Blueprint bp = new Blueprint(req.author(), req.name(), req.points());
@@ -71,6 +72,7 @@ public class BlueprintsAPIController {
 
     // PUT /blueprints/{author}/{bpname}/points
     @PutMapping("/{author}/{bpname}/points")
+    @PreAuthorize("hasAuthority('SCOPE_blueprints.write')")
     public ResponseEntity<?> addPoint(@PathVariable String author, @PathVariable String bpname,
                                       @RequestBody Point p) {
         try {
