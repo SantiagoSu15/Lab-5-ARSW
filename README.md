@@ -12,6 +12,7 @@ Incluye un endpoint didáctico `/auth/login` que emite el token para facilitar l
 - JDK 21
 - Maven 3.9+
 - Git
+- Docker
 
 
 
@@ -19,13 +20,12 @@ Incluye un endpoint didáctico `/auth/login` que emite el token para facilitar l
 
 1. Clonar o descomprimir el proyecto:
    ```bash
-   git clone https://github.com/DECSIS-ECI/Lab_P2_BluePrints_Java21_API_Security_JWT.git
-   cd Lab_P2_BluePrints_Java21_API_Security_JWT
+   git clone https://github.com/SantiagoSu15/Lab-5-ARSW.git
    ```
 
-2. Ejecutar con Maven:
+2. Ejecutar con Docker:
    ```bash
-   mvn -q -DskipTests spring-boot:run
+   docker-compose up  
    ```
 
 3. Verificar que la aplicación levante en `http://localhost:8080`.
@@ -36,6 +36,7 @@ Incluye un endpoint didáctico `/auth/login` que emite el token para facilitar l
 src/main/java/co/edu/eci/blueprints/
   ├── api/BlueprintController.java       # Endpoints protegidos
   ├── auth/AuthController.java           # Login didáctico para emitir tokens
+  ├── api/blueprints/                    # Directorio con el MVC del laboratorio 4
   ├── config/OpenApiConfig.java          # Configuración Swagger + JWT
   └── security/
        ├── SecurityConfig.java
