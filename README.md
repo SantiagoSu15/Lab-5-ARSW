@@ -117,6 +117,26 @@ Prueba de endpoint con get (Endpoint del lab5)
 Prueba de endpoint con get (Endpoint del lab4) (vacio por que no hay datos en la BD de Postgre)
 ![Imagen4](/docs/4.png)
 
+se realiza la prueba del endpoint para el metodo put en swagger
+
+<img width="1333" height="883" alt="image" src="https://github.com/user-attachments/assets/2326d98a-8aab-4b93-b032-9a5eda9ba9a9" />
+
+<img width="1318" height="685" alt="image" src="https://github.com/user-attachments/assets/f7bcea25-8a3d-4b39-8ed0-25b77d8e5621" />
+
+se realiza la prueba del endpoint para el metodo post en swagger
+
+<img width="1309" height="742" alt="image" src="https://github.com/user-attachments/assets/1ee7ff6e-0ba5-4548-8192-68a49447a429" />
+
+<img width="1369" height="579" alt="image" src="https://github.com/user-attachments/assets/919a0d2d-f5fa-447f-bc79-f9b314faa67c" />
+
+## 4 modificacion del tiempo de expiracion del token
+tras modificar el tiempo de expiracion de token el comportamiento varia segun lo que se cambie, si se coloca menos tiempo esto significa que las sesiones activas van a durar menos tiempo y habra
+que reingresar de forma mas constante, pero tambien significa que se esta creando un nuevo token constantemente y es mejor para la seguridad.
+por el contrario si se amplia el tiempo de caducidad de token pasa lo contrario, las sesiones duran mas tiempo activas pero esto permitiria que al no estar restableciendoce de forma mas continua el token este queda expuesto a ser interceptado y cifrado.
+
+## 5 documentacion de endpoints deautenticacion y negocio
+
+
 ## Authors
 
 * **Juan Rangel** & **Santiago Suarez**
