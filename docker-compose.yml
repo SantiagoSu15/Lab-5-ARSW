@@ -3,7 +3,7 @@ version: '3.9'
 services:
   java_app:
     container_name: java_app
-    image: lab5-arsw-java-app
+    image: ghcr.io/SantiagoSu15/Lab-5-ARSW:latest
     build: .
     ports:
       - 8080:8080
