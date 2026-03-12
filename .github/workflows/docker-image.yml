@@ -1,4 +1,4 @@
-name: Docker Compose CI
+name: Docker Compose CI + Push to GHCR
 
 on:
   push:
@@ -7,21 +7,25 @@ on:
     branches: ["main"]
 
 jobs:
-  compose:
+  docker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Build services
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Build Docker images
         run: docker compose build
 
       - name: Start services
         run: docker compose up -d
 
-      - name: Show running containers
-        run: docker compose ps
+      - name: Push Docker images to GHCR
+        run: docker compose push
 
+      # 7️⃣ Limpiar contenedores
       - name: Stop containers
         run: docker compose down
