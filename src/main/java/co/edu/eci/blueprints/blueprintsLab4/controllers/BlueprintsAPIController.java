@@ -17,7 +17,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +30,6 @@ import java.util.Set;
 @RequestMapping("/blueprints")
 @RequiredArgsConstructor
 @Tag(name = "Blueprints", description = "API para gestión de planos (blueprints)")
-@SecurityRequirement(name = "bearer-jwt")
 public class BlueprintsAPIController {
 
     private final BlueprintsServices services;
@@ -44,7 +42,6 @@ public class BlueprintsAPIController {
                     content = @Content(schema = @Schema(implementation = Set.class)))
     })
     @GetMapping
-    @PreAuthorize("hasAuthority('SCOPE_blueprints.read')")
     public ResponseEntity<Set<Blueprint>> getAll() {
         return ResponseEntity.ok(services.getAllBlueprints());
     }
@@ -57,7 +54,6 @@ public class BlueprintsAPIController {
             @ApiResponse(responseCode = "404", description = "No se encontraron blueprints para el autor")
     })
     @GetMapping("/{author}")
-    @PreAuthorize("hasAuthority('SCOPE_blueprints.read')")
     public ResponseEntity<?> byAuthor(
             @Parameter(description = "Nombre del autor", example = "john")
             @PathVariable String author) {
@@ -76,7 +72,6 @@ public class BlueprintsAPIController {
             @ApiResponse(responseCode = "404", description = "Blueprint no encontrado")
     })
     @GetMapping("/{author}/{bpname}")
-    @PreAuthorize("hasAuthority('SCOPE_blueprints.read')")
     public ResponseEntity<?> byAuthorAndName(
             @Parameter(description = "Nombre del autor", example = "john")
             @PathVariable String author, 
@@ -96,6 +91,7 @@ public class BlueprintsAPIController {
             @ApiResponse(responseCode = "403", description = "El blueprint ya existe o error de validación")
     })
     @PostMapping
+    @SecurityRequirement(name = "bearer-jwt")
     @PreAuthorize("hasAuthority('SCOPE_blueprints.write')")
     public ResponseEntity<?> add(@Valid @RequestBody NewBlueprintRequest req) {
         try {
@@ -114,7 +110,6 @@ public class BlueprintsAPIController {
             @ApiResponse(responseCode = "404", description = "Blueprint no encontrado")
     })
     @PutMapping("/{author}/{bpname}/points")
-    @PreAuthorize("hasAuthority('SCOPE_blueprints.write')")
     public ResponseEntity<?> addPoint(
             @Parameter(description = "Nombre del autor", example = "john")
             @PathVariable String author, 

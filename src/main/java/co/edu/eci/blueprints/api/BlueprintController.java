@@ -14,7 +14,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/blueprints")
 @Tag(name = "Blueprints API", description = "API simplificada de blueprints")
-@SecurityRequirement(name = "bearer-jwt")
 public class BlueprintController {
 
     @Operation(summary = "Listar blueprints", description = "Retorna una lista simplificada de blueprints")
@@ -22,7 +21,6 @@ public class BlueprintController {
             @ApiResponse(responseCode = "200", description = "Lista obtenida exitosamente")
     })
     @GetMapping
-    @PreAuthorize("hasAuthority('SCOPE_blueprints.read')")
     public List<Map<String, String>> list() {
         return List.of(
             Map.of("id", "b1", "name", "Casa de campo"),
@@ -35,6 +33,7 @@ public class BlueprintController {
             @ApiResponse(responseCode = "200", description = "Blueprint creado exitosamente")
     })
     @PostMapping
+    @SecurityRequirement(name = "bearer-jwt")
     @PreAuthorize("hasAuthority('SCOPE_blueprints.write')")
     public Map<String, String> create(@RequestBody Map<String, String> in) {
         return Map.of("id", "new", "name", in.getOrDefault("name", "nuevo"));
