@@ -30,9 +30,6 @@ jobs:
           # Etiqueta la imagen java-app
           docker tag java_app ghcr.io/your-username/your-repo/java-app:$BRANCH_NAME
 
-          # Etiqueta la imagen java-db
-          docker tag java_db ghcr.io/your-username/your-repo/java-db:$BRANCH_NAME
-
       - name: Push Docker images to GHCR
         run: |
           BRANCH_NAME="${GITHUB_REF##*/}"
@@ -41,8 +38,7 @@ jobs:
           # Empuja la imagen java-app a GHCR
           docker push ghcr.io/your-username/your-repo/java-app:$BRANCH_NAME
 
-          # Empuja la imagen java-db a GHCR
-          docker push ghcr.io/your-username/your-repo/java-db:$BRANCH_NAME
+          # Nota: `java-db` es una imagen pública, no necesitas construirla ni etiquetarla.
 
       - name: Stop containers
         run: docker-compose down
