@@ -20,7 +20,7 @@ jobs:
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build Docker images
-        run: docker-compose build
+        run: docker compose build
 
       - name: Tag Docker images with branch name
         run: |
