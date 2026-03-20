@@ -27,14 +27,14 @@ jobs:
           BRANCH_NAME="${GITHUB_REF##*/}"
           echo "Tagging images with branch name: $BRANCH_NAME"
 
-          docker tag java_app ghcr.io/SantiagoSu15/Lab-5-ARSW/java-app:$BRANCH_NAME
+          docker tag java_app ghcr.io/santiagosu15/lab-5-arsw/java-app:$BRANCH_NAME
 
       - name: Push Docker images to GHCR
         run: |
           BRANCH_NAME="${GITHUB_REF##*/}"
           echo "Pushing images to GHCR with branch name: $BRANCH_NAME"
 
-          docker push ghcr.io/SantiagoSu15/Lab-5-ARSW/java-app:$BRANCH_NAME
+          docker push ghcr.io/santiagosu15/lab-5-arsw/java-app:$BRANCH_NAME
 
 
       - name: Stop containers
