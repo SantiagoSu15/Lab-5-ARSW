@@ -20,20 +20,29 @@ jobs:
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Build Docker images
-        run: docker compose build
+        run: docker-compose build
 
       - name: Tag Docker images with branch name
         run: |
-          IMAGE_TAG="ghcr.io/your-username/your-repo/java-app:${GITHUB_REF##*/}"
-          echo "Tagging image with branch name: $IMAGE_TAG"
-          docker tag java_app $IMAGE_TAG
-          docker tag java_DB $IMAGE_TAG
+          BRANCH_NAME="${GITHUB_REF##*/}"
+          echo "Tagging images with branch name: $BRANCH_NAME"
+
+          # Etiqueta la imagen java-app
+          docker tag java_app ghcr.io/your-username/your-repo/java-app:$BRANCH_NAME
+
+          # Etiqueta la imagen java-db
+          docker tag java_DB ghcr.io/your-username/your-repo/java-db:$BRANCH_NAME
 
       - name: Push Docker images to GHCR
         run: |
-          IMAGE_TAG="ghcr.io/your-username/your-repo/java-app:${GITHUB_REF##*/}"
-          docker push $IMAGE_TAG
-          docker push ghcr.io/your-username/your-repo/java-db:${GITHUB_REF##*/}
+          BRANCH_NAME="${GITHUB_REF##*/}"
+          echo "Pushing images to GHCR with branch name: $BRANCH_NAME"
+
+          # Empuja la imagen java-app a GHCR
+          docker push ghcr.io/your-username/your-repo/java-app:$BRANCH_NAME
+
+          # Empuja la imagen java-db a GHCR
+          docker push ghcr.io/your-username/your-repo/java-db:$BRANCH_NAME
 
       - name: Stop containers
-        run: docker compose down
+        run: docker-compose down
