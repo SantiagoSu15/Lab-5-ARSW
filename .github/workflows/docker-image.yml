@@ -31,7 +31,7 @@ jobs:
           docker tag java_app ghcr.io/your-username/your-repo/java-app:$BRANCH_NAME
 
           # Etiqueta la imagen java-db
-          docker tag java_DB ghcr.io/your-username/your-repo/java-db:$BRANCH_NAME
+          docker tag java_db ghcr.io/your-username/your-repo/java-db:$BRANCH_NAME
 
       - name: Push Docker images to GHCR
         run: |
