@@ -2,9 +2,11 @@ name: Docker Compose CI + Push to GHCR
 
 on:
   push:
-    branches: ["main"]
+    branches:
+      - Lab-7
   pull_request:
-    branches: ["main"]
+    branches:
+      - Lab-7
 
 jobs:
   docker:
@@ -20,11 +22,18 @@ jobs:
       - name: Build Docker images
         run: docker compose build
 
-      - name: Start services
-        run: docker compose up -d
+      - name: Tag Docker images with branch name
+        run: |
+          IMAGE_TAG="ghcr.io/your-username/your-repo/java-app:${GITHUB_REF##*/}"
+          echo "Tagging image with branch name: $IMAGE_TAG"
+          docker tag java_app $IMAGE_TAG
+          docker tag java_DB $IMAGE_TAG
 
       - name: Push Docker images to GHCR
-        run: docker compose push
+        run: |
+          IMAGE_TAG="ghcr.io/your-username/your-repo/java-app:${GITHUB_REF##*/}"
+          docker push $IMAGE_TAG
+          docker push ghcr.io/your-username/your-repo/java-db:${GITHUB_REF##*/}
 
       - name: Stop containers
         run: docker compose down

@@ -1,7 +1,9 @@
 package co.edu.eci.blueprints.blueprintsLab4.persistence;
 
 import co.edu.eci.blueprints.blueprintsLab4.model.Blueprint;
+import co.edu.eci.blueprints.blueprintsLab4.model.Point;
 
+import java.util.List;
 import java.util.Set;
 
 public interface BlueprintPersistence {
@@ -14,5 +16,7 @@ public interface BlueprintPersistence {
 
     Set<Blueprint> getAllBlueprints();
 
-    void addPoint(String author, String name, int x, int y) throws BlueprintNotFoundException;
+    void addPoints(String author, String name, List<Point> points) throws BlueprintNotFoundException;
+
+    void deleteBlueprint(String author, String name) throws BlueprintNotFoundException;
 }

@@ -3,12 +3,14 @@ package co.edu.eci.blueprints.blueprintsLab4.services;
 
 import co.edu.eci.blueprints.blueprintsLab4.filters.BlueprintsFilter;
 import co.edu.eci.blueprints.blueprintsLab4.model.Blueprint;
+import co.edu.eci.blueprints.blueprintsLab4.model.Point;
 import co.edu.eci.blueprints.blueprintsLab4.persistence.BlueprintNotFoundException;
 import co.edu.eci.blueprints.blueprintsLab4.persistence.BlueprintPersistence;
 import co.edu.eci.blueprints.blueprintsLab4.persistence.BlueprintPersistenceException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -35,7 +37,11 @@ public class BlueprintsServices {
         return filter.apply(persistence.getBlueprint(author, name));
     }
 
-    public void addPoint(String author, String name, int x, int y) throws BlueprintNotFoundException {
-        persistence.addPoint(author, name, x, y);
+    public void addPoints(String author, String name, List<Point> points) throws BlueprintNotFoundException {
+        persistence.addPoints(author, name, points);
+    }
+
+    public void deleteBlueprint(String author, String name) throws BlueprintNotFoundException {
+        persistence.deleteBlueprint(author, name);
     }
 }

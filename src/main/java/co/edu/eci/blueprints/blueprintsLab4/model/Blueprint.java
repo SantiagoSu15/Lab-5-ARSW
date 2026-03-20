@@ -13,8 +13,9 @@ import java.util.Objects;
 
 
 @Entity
-@Table(name = "blueprints")
-@NoArgsConstructor
+@Table(
+        uniqueConstraints = @UniqueConstraint(columnNames = {"author", "name"})
+)@NoArgsConstructor
 @Getter
 @Setter
 @Schema(description = "Plano (Blueprint) con puntos")

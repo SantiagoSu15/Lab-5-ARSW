@@ -13,19 +13,15 @@ spring:
       matching-strategy: ant_path_matcher
 
   datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/blueprints}
+    username: ${DATABASE_USER:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
 
   jpa:
     hibernate:
       ddl-auto: update
-
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: https://auth.example.com/.well-known/jwks.json
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
 
 management:
   endpoints:
@@ -35,8 +31,3 @@ management:
   endpoint:
     health:
       show-details: always
-
-blueprints:
-  security:
-    issuer: "https://decsis-eci/blueprints"
-    token-ttl-seconds: 3600

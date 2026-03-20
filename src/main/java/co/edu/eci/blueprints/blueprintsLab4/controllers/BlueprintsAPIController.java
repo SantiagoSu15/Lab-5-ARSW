@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -110,16 +111,25 @@ public class BlueprintsAPIController {
             @ApiResponse(responseCode = "404", description = "Blueprint no encontrado")
     })
     @PutMapping("/{author}/{bpname}/points")
-    public ResponseEntity<?> addPoint(
-            @Parameter(description = "Nombre del autor", example = "john")
-            @PathVariable String author, 
-            @Parameter(description = "Nombre del blueprint", example = "house")
+    public ResponseEntity<?> addPoints(
+            @PathVariable String author,
             @PathVariable String bpname,
-            @RequestBody Point p) {
+            @RequestBody List<Point> points) {
         try {
-            services.addPoint(author, bpname, p.x(), p.y());
+            services.addPoints(author, bpname, points);
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         } catch (BlueprintNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", e.getMessage()));
+        }
+    }
+
+
+    @DeleteMapping("/{author}/{bpname}")
+    public ResponseEntity<?> delete( @PathVariable String author, @PathVariable String bpname){
+        try{
+            services.deleteBlueprint(author,bpname);
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }catch(BlueprintNotFoundException e){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", e.getMessage()));
         }
     }
